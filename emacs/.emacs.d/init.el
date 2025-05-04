@@ -2,6 +2,14 @@
 (setq visible-bell t)
 (setq package-install-upgrade-built-in t)
 
+(cond ((eq system-type 'darwin)
+       (setq default-input-method "MacOSX"
+	     mac-command-modifier 'meta
+	     mac-option-modifier nil
+	     mac-allow-antialiasing t
+	     mac-command-key-is-meta t)))
+
+(tool-bar-mode -1)
 
 ;;; Packages
 (require 'package)
