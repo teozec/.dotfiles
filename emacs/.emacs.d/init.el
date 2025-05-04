@@ -31,4 +31,5 @@
   :config
   (load-theme 'solarized-light t))
 
-(use-package magit)
+(use-package magit
+  :ensure t)
