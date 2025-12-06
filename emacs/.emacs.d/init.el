@@ -2,15 +2,15 @@
 (setq visible-bell t)
 (setq package-install-upgrade-built-in t)
 
-(add-hook 'window-setup-hook #'toggle-frame-maximized)
-(toggle-frame-maximized)
 
 (cond ((eq system-type 'darwin)
        (setq default-input-method "MacOSX"
 	     mac-command-modifier 'meta
 	     mac-option-modifier nil
 	     mac-allow-antialiasing t
-	     mac-command-key-is-meta t)))
+	     mac-command-key-is-meta t)
+       (add-hook 'window-setup-hook #'toggle-frame-maximized)
+       (toggle-frame-maximized)))
 
 (tool-bar-mode -1)
 
@@ -72,6 +72,7 @@
            ;;(c "https://github.com/tree-sitter/tree-sitter-c")
            ;;(cpp "https://github.com/tree-sitter/tree-sitter-cpp")
            ;;(toml "https://github.com/tree-sitter/tree-sitter-toml")
+           (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.21.2"))
            (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "tsx/src"))
            (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
            ;;(yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))
@@ -92,3 +93,12 @@
   :ensure t
   :if (memq window-system '(mac ns x))
   :init (exec-path-from-shell-initialize))
+
+(add-to-list 'load-path (expand-file-name "local-packages/beancount-mode/" user-emacs-directory))
+(use-package beancount
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.bean\\'" . beancount-mode)))
+
+(setq scheme-program-name "/usr/bin/mit-scheme")
+

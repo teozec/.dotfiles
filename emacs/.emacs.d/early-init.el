@@ -1,4 +1,6 @@
 ;; Make Emacs fullscreen on startup
-(setq frame-resize-pixelwise t
-      window-resize-pixelwise t)
-;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(cond ((eq system-type 'darwin)
+       (setq frame-resize-pixelwise t
+	     window-resize-pixelwise t))
+      ((eq system-type 'gnu/linux)
+       (add-to-list 'initial-frame-alist '(fullscreen . maximized))))
