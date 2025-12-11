@@ -25,9 +25,9 @@
 (require 'use-package)
 
 (use-package evil
-	     :ensure t
-	     :config
-	     (evil-mode))
+  :ensure t
+  :config
+  (evil-mode))
 
 (use-package solarized-theme
   :ensure t
@@ -36,6 +36,14 @@
 
 (use-package magit
   :ensure t)
+
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-auto t)
+  :init
+  (global-corfu-mode))
+
 
 (use-package org
   :ensure t
@@ -92,7 +100,8 @@
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns x))
-  :init (exec-path-from-shell-initialize))
+  :init
+  (exec-path-from-shell-initialize))
 
 (add-to-list 'load-path (expand-file-name "local-packages/beancount-mode/" user-emacs-directory))
 (use-package beancount
