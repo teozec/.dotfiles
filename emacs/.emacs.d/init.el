@@ -26,8 +26,17 @@
 
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (setq evil-collection-mode-list nil)
+  (evil-collection-init '(magit dired)))
 
 (use-package solarized-theme
   :ensure t
