@@ -9,8 +9,10 @@
 	     mac-option-modifier nil
 	     mac-allow-antialiasing t
 	     mac-command-key-is-meta t)
-       (add-hook 'window-setup-hook #'toggle-frame-maximized)
-       (toggle-frame-maximized)))
+
+       ;; When starting emacs directly on MacOS, a gap is left below the frame, so a toggle-frame-maximized call is needed.
+       ;; This does not happen when using emacsclient.
+       (unless (daemonp)) (add-hook 'emacs-startup-hook #'toggle-frame-maximized)))
 
 (tool-bar-mode -1)
 
