@@ -1,3 +1,5 @@
+;; -*- lexical-binding: nil; -*-
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq visible-bell t)
 (setq package-install-upgrade-built-in t)
