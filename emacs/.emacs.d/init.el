@@ -131,6 +131,11 @@
 
 (setq scheme-program-name "/usr/bin/mit-scheme")
 
+(use-package rfc-mode
+  :ensure t
+  :config
+  (setq rfc-mode-directory (expand-file-name "~/.rfc/")))
+
 (use-package vterm
   :ensure t
   :bind (:map vterm-mode-map
