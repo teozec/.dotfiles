@@ -29,6 +29,29 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(use-package dired
+  :config
+  (setq dired-kill-when-opening-new-dired-buffer t))
+
+(defun my/dired-sidebar-mouse-toggle (event)
+  "Expand/collapse the directory actually clicked on, not point."
+  (interactive "e")
+  (let ((pos (posn-point (event-end event)))
+        (window (posn-window (event-end event))))
+    (with-selected-window window
+      (goto-char pos)
+      (dired-sidebar-subtree-toggle))))
+
+(use-package dired-sidebar
+  :ensure t
+  :bind (("C-x s" . dired-sidebar-toggle-sidebar)
+	 :map dired-sidebar-mode-map
+         ([mouse-3] . my/dired-sidebar-mouse-toggle))
+  :commands (dired-sidebar-toggle-sidebar)
+  :config
+  (setq dired-sidebar-window-fixed 'nil
+	dired-sidebar-width 50))
+
 (use-package evil
   :ensure t
   :init
