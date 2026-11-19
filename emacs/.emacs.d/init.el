@@ -41,7 +41,7 @@
   :ensure t
   :config
   (setq evil-collection-mode-list nil)
-  (evil-collection-init '(magit dired)))
+  (evil-collection-init '(magit dired vterm)))
 
 (use-package solarized-theme
   :ensure t
@@ -131,3 +131,8 @@
 
 (setq scheme-program-name "/usr/bin/mit-scheme")
 
+(use-package vterm
+  :ensure t
+  :bind (:map vterm-mode-map
+	      ("<wheel-up>" . (lambda () (interactive) (vterm-send-key "<prior>")))
+	      ("<wheel-down>" . (lambda () (interactive) (vterm-send-key "<next>")))))
