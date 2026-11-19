@@ -174,3 +174,14 @@
   :init
   (persp-mode))
 
+(use-package emms
+  :ensure t
+  :config
+  (require 'emms-setup)
+  (emms-all)
+  (emms-default-players)
+  ;; MPRIS needs D-Bus, which macOS builds of Emacs don't have.
+  (when (featurep 'dbusbind)
+    (require 'emms-mpris)
+    (emms-mpris-enable)))
+
