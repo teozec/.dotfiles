@@ -164,3 +164,13 @@
   :bind (:map vterm-mode-map
 	      ("<wheel-up>" . (lambda () (interactive) (vterm-send-key "<prior>")))
 	      ("<wheel-down>" . (lambda () (interactive) (vterm-send-key "<next>")))))
+
+
+(use-package perspective
+  :bind
+  ("C-x C-b" . persp-list-buffers)
+  :custom
+  (persp-mode-prefix-key (kbd "C-c x"))  ; pick your own prefix key here
+  :init
+  (persp-mode))
+
