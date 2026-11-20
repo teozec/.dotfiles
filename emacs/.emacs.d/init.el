@@ -181,3 +181,11 @@
   :ensure t
   :hook (terraform-ts-mode . eglot-ensure))
 
+(use-package clojure-ts-mode
+  :if (my/feature-p 'clojure)
+  :ensure t)
+
+(use-package cider
+  :if (my/feature-p 'clojure)
+  :ensure t)
+

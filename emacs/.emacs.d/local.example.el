@@ -4,4 +4,5 @@
 (setq my/features
       '(
 	(terraform) ; Support for the Terraform language and major mode
+	(clojure) ; Support for the Clojure language and related modes
 	))
