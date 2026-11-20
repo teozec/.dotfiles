@@ -35,23 +35,23 @@
   :config
   (setq dired-kill-when-opening-new-dired-buffer t))
 
-(defun my/dired-sidebar-mouse-toggle (event)
-  "Expand/collapse the directory actually clicked on, not point."
-  (interactive "e")
-  (let ((pos (posn-point (event-end event)))
-        (window (posn-window (event-end event))))
-    (with-selected-window window
-      (goto-char pos)
-      (dired-sidebar-subtree-toggle))))
-
 (use-package dired-sidebar
   :ensure t
+  :preface
+  (defun my/dired-sidebar--mouse-toggle (event)
+    "Expand/collapse the directory actually clicked on, not point."
+    (interactive "e")
+    (let ((pos (posn-point (event-end event)))
+          (window (posn-window (event-end event))))
+      (with-selected-window window
+	(goto-char pos)
+	(dired-sidebar-subtree-toggle))))
   :bind (("C-x s" . dired-sidebar-toggle-sidebar)
 	 :map dired-sidebar-mode-map
-         ([mouse-3] . my/dired-sidebar-mouse-toggle))
+         ([mouse-3] . my/dired-sidebar--mouse-toggle))
   :commands (dired-sidebar-toggle-sidebar)
   :config
-  (setq dired-sidebar-window-fixed 'nil
+  (setq dired-sidebar-window-fixed nil
 	dired-sidebar-width 50))
 
 (use-package evil
@@ -141,7 +141,6 @@
   :bind (:map vterm-mode-map
 	      ("<wheel-up>" . (lambda () (interactive) (vterm-send-key "<prior>")))
 	      ("<wheel-down>" . (lambda () (interactive) (vterm-send-key "<next>")))))
-
 
 (use-package perspective
   :bind
