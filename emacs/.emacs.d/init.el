@@ -114,7 +114,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns x))
-  :init
+  :config
   (exec-path-from-shell-initialize))
 
 (add-to-list 'load-path (expand-file-name "local-packages/beancount-mode/" user-emacs-directory))
