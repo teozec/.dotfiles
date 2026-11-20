@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: nil; -*-
 
+;; Minimum supported Emacs version: 31.1
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq visible-bell t)
 (setq package-install-upgrade-built-in t)
@@ -100,32 +102,7 @@
         ;slime-net-coding-system            'utf-8-unix
         ;slime-lisp-implementations         '((sbcl  ("sbcl"))))))
 
-
-(dolist (grammar
-         '(
-	   ;;(css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
-           ;;(bash "https://github.com/tree-sitter/tree-sitter-bash")
-           ;;(html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
-           (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.23.1" "src"))
-           ;;(json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
-           ;;(python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
-           ;;(go "https://github.com/tree-sitter/tree-sitter-go" "v0.20.0")
-           ;;(markdown "https://github.com/ikatyang/tree-sitter-markdown")
-           ;;(make "https://github.com/alemuller/tree-sitter-make")
-           ;;(elisp "https://github.com/Wilfred/tree-sitter-elisp")
-           ;;(cmake "https://github.com/uyha/tree-sitter-cmake")
-           ;;(c "https://github.com/tree-sitter/tree-sitter-c")
-           ;;(cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-           ;;(toml "https://github.com/tree-sitter/tree-sitter-toml")
-           (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.21.2"))
-           (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "tsx/src"))
-           (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
-           (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))
-           ;;(prisma "https://github.com/victorhqc/tree-sitter-prisma"))
-	   ))
-  (add-to-list 'treesit-language-source-alist grammar)
-  (unless (treesit-language-available-p (car grammar))
-    (treesit-install-language-grammar (car grammar))))
+(setq treesit-auto-install-grammar 'ask)
 
 (use-package eglot
   :hook (prog-mode . eglot-ensure))
