@@ -2,6 +2,19 @@
 
 ;; Minimum supported Emacs version: 31.1
 
+(defvar my/features nil
+  "Alist (FEATURE . PLIST) of enabled features.")
+
+(load (expand-file-name "local.el" user-emacs-directory) t t)
+
+(defun my/feature-p (feature)
+  "(FEATURE . PLIST) if FEATURE is enabled, nil otherwise."
+  (assq feature my/features))
+
+(defun my/feature-opt (feature opt &optional default)
+  "Value of option OPT of FEATURE, or DEFAULT if absent."
+  (or (plist-get (cdr (my/feature-p feature)) opt) default))
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq visible-bell t)
 (setq package-install-upgrade-built-in t)
