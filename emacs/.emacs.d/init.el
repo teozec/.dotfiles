@@ -174,3 +174,10 @@
     (require 'emms-mpris)
     (emms-mpris-enable)))
 
+(use-package terraform-ts-mode
+  :if (my/feature-p 'terraform)
+  :vc (:url "https://codeberg.org/ccbash-oss/terraform-ts-mode"
+	    :rev "v1.1")
+  :ensure t
+  :hook (terraform-ts-mode . eglot-ensure))
+
