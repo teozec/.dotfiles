@@ -107,13 +107,11 @@
 	org-agenda-files   (list "~/org/")))
 
 (use-package slime
+  :if (my/feature-p 'common-lisp)
   :ensure t
   :init
-  (setq inferior-lisp-program "/opt/homebrew/bin/sbcl"))
-  ;(setq slime-contribs                     '(slime-fancy)
-        ;slime-complete-symbol-function     'slime-fuzzy-complete-symbol
-        ;slime-net-coding-system            'utf-8-unix
-        ;slime-lisp-implementations         '((sbcl  ("sbcl"))))))
+  (let ((program (my/feature-opt 'common-lisp :program)))
+    (when program (setq inferior-lisp-program program))))
 
 (setq treesit-auto-install-grammar 'ask)
 

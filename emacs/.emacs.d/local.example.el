@@ -7,4 +7,6 @@
 	(clojure) ; Support for the Clojure language and related modes
 	(rust) ; Support for the Rust language and major mode
 	(markdown) ; Support for the Markdown language and major mode
+	(common-lisp ; Support for the Common Lisp language and major mode
+	 :program "/path/to/lisp") ; Common Lisp executable
 	))
