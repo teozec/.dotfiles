@@ -174,6 +174,14 @@
     (require 'emms-mpris)
     (emms-mpris-enable)))
 
+(use-package rust-ts-mode
+  :if (my/feature-p 'rust)
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs
+               '((rust-ts-mode) .
+		 ("rustup" "run" "stable" "rust-analyzer" :initializationOptions (:check (:command "clippy"))))))
+
 (use-package terraform-ts-mode
   :if (my/feature-p 'terraform)
   :vc (:url "https://codeberg.org/ccbash-oss/terraform-ts-mode"

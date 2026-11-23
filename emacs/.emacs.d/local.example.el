@@ -5,4 +5,5 @@
       '(
 	(terraform) ; Support for the Terraform language and major mode
 	(clojure) ; Support for the Clojure language and related modes
+	(rust) ; Support for the Rust language and major mode
 	))
