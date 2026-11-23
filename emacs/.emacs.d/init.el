@@ -174,6 +174,10 @@
     (require 'emms-mpris)
     (emms-mpris-enable)))
 
+(use-package markdown-mode
+  :if (my/feature-p 'markdown)
+  :ensure t)
+
 (use-package rust-ts-mode
   :if (my/feature-p 'rust)
   :ensure t
