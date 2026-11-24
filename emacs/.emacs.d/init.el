@@ -46,7 +46,9 @@
 
 (use-package dired
   :config
-  (setq dired-kill-when-opening-new-dired-buffer t))
+  (setq dired-kill-when-opening-new-dired-buffer t)
+  (with-eval-after-load 'evil-collection
+    (evil-collection-init 'dired)))
 
 (use-package dired-sidebar
   :ensure t
@@ -78,8 +80,7 @@
   :after evil
   :ensure t
   :config
-  (setq evil-collection-mode-list nil)
-  (evil-collection-init '(magit dired vterm)))
+  (setq evil-collection-mode-list nil))
 
 (use-package solarized-theme
   :ensure t
@@ -87,7 +88,10 @@
   (load-theme 'solarized-light t))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (with-eval-after-load 'evil-collection
+    (evil-collection-init 'magit)))
 
 (use-package corfu
   :ensure t
@@ -151,7 +155,10 @@
   :ensure t
   :bind (:map vterm-mode-map
 	      ("<wheel-up>" . (lambda () (interactive) (vterm-send-key "<prior>")))
-	      ("<wheel-down>" . (lambda () (interactive) (vterm-send-key "<next>")))))
+	      ("<wheel-down>" . (lambda () (interactive) (vterm-send-key "<next>"))))
+  :config
+  (with-eval-after-load 'evil-collection
+    (evil-collection-init 'vterm)))
 
 (use-package perspective
   :bind
