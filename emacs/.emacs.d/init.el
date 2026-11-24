@@ -197,5 +197,8 @@
 
 (use-package cider
   :if (my/feature-p 'clojure)
-  :ensure t)
+  :ensure t
+  :config
+  (with-eval-after-load 'evil-collection
+    (evil-collection-init 'cider)))
 
